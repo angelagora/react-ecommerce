@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CartWidget from "./components/CartWidget";
 
 const NavBar = () => {
   return (
@@ -10,6 +11,7 @@ const NavBar = () => {
         <MenuItem href="">Products</MenuItem>
         <MenuItem href="">FAQs</MenuItem>
         <MenuItem href="">Contact</MenuItem>
+        <CartWidget />
       </Menu>
     </Container>
   );
