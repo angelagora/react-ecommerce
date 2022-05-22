@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import ItemCount from "./components/ItemCount";
 
 const ItemListContainer = (props) => {
-  const { title, price, img } = props;
+  const { title, price, img, stock } = props;
   return (
     <Container>
       <Card>
@@ -12,7 +13,7 @@ const ItemListContainer = (props) => {
           <CardPrice>$ {price}</CardPrice>
         </CardContent>
         <CardFooter>
-          <CardButton>Comprar</CardButton>
+          <ItemCount stock={stock} />
         </CardFooter>
       </Card>
     </Container>
@@ -34,7 +35,7 @@ const Card = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 300px;
+  height: 500px;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -44,8 +45,10 @@ const CardImage = styled.div`
   display: flex;
   background: url(${({ img }) => img});
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100%;
-  height: 250px;
+  height: 370px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 `;
@@ -55,13 +58,13 @@ const CardContent = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 50px;
+  height: 30px;
+  margin-top: 0.5rem;
 `;
 const CardTitle = styled.span`
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #194184;
-  text-transform: uppercase;
   margin-right: 1rem;
 `;
 const CardPrice = styled.span`
@@ -75,19 +78,5 @@ const CardFooter = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 50px;
-`;
-const CardButton = styled.button`
-  font-size: 1rem;
-  font-weight: bold;
-  color: #194184;
-  cursor: pointer;
-  &:hover {
-    color: #fff;
-    background-color: #194184;
-  }
-  width: 100%;
-  height: 100%;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  height: 110px;
 `;

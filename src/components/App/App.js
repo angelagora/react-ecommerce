@@ -3,24 +3,24 @@ import Footer from "../Footer/Footer";
 import ItemListContainer from "../ItemListContainer/ItemListContainer";
 import NavBar from "../Navbar/NavBar";
 import GlobalAlert from "./components/GlobalAlert";
+import { data } from "./data";
 
 function App() {
-  const img =
-    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
   return (
     <Container className="App">
       <NavBar />
       <GlobalAlert message="Bienvenido, usuario" />
       <InnerContainer>
         <Grid>
-          <ItemListContainer title="Gatito" price="1234" img={img} /> {/* TODO: Hacer un map de data mockeada */}
-          <ItemListContainer title="Gatito" price="3434" img={img} />
-          <ItemListContainer title="Gatito" price="2342" img={img} />
-          <ItemListContainer title="Gatito" price="3432" img={img} />
-          <ItemListContainer title="Gatito" price="5454" img={img} />
-          <ItemListContainer title="Gatito" price="4323" img={img} />
-          <ItemListContainer title="Gatito" price="2222" img={img} />
-          <ItemListContainer title="Gatito" price="1111" img={img} />
+          {data.map((item) => (
+            <ItemListContainer
+              key={item.id}
+              title={item.title}
+              price={item.price}
+              img={item.img}
+              stock={item.stock}
+            />
+          ))}
         </Grid>
       </InnerContainer>
       <Footer />
