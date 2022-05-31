@@ -1,18 +1,28 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./GlobalStyles.css";
 import styled from "styled-components";
 import Footer from "../Footer/Footer";
 import ItemListContainer from "../ItemListContainer/ItemListContainer";
 import NavBar from "../Navbar/NavBar";
 import GlobalAlert from "./components/GlobalAlert";
+import NotFound from "../../pages/NotFound";
+import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer";
 
 function App() {
   return (
     <Container className="App">
-      <NavBar />
-      <GlobalAlert message="Bienvenido, usuario" />
-      <InnerContainer>
-        <ItemListContainer />
-      </InnerContainer>
-      <Footer />
+      <BrowserRouter>
+        <NavBar />
+        <GlobalAlert message="Bienvenido, usuari@" />
+        <InnerContainer>
+          <Routes>
+            <Route path="/" element={<ItemListContainer />} />
+            <Route path="/product/:id" element={<ItemDetailContainer />} />
+            <Route path="*" element={<NotFound/>} />
+          </Routes>
+        </InnerContainer>
+        <Footer />
+      </BrowserRouter>
     </Container>
   );
 }
