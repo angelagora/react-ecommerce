@@ -7,6 +7,7 @@ import NavBar from "../Navbar/NavBar";
 import GlobalAlert from "./components/GlobalAlert";
 import NotFound from "../../pages/NotFound";
 import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer";
+import Category from "../../pages/Category";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ItemListContainer />} />
             <Route path="/product/:id" element={<ItemDetailContainer />} />
+            <Route path="/products/:category" element={<Category />} />
             <Route path="*" element={<NotFound/>} />
           </Routes>
         </InnerContainer>

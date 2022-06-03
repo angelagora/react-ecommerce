@@ -1,6 +1,7 @@
 import react, { useEffect, useState } from "react";
 import ItemList from "./components/ItemList";
 import { data } from "../../utils/data";
+import Spinner from "../Spinner/Spinner";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -34,7 +35,7 @@ const ItemListContainer = () => {
 
   return (
     <>
-      {loading && <p>Cargando...</p>}
+      {loading && <Spinner/>}
       {error && <p>{error}</p>}
       {!loading && !error && <ItemList products={products} />}
     </>

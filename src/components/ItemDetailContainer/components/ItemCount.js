@@ -1,15 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const ItemCount = (props) => {
-  const { stock } = props;
+  const { stock, id } = props;
   const [count, setCount] = React.useState(0);
   return (
     <Container>
       <CounterContainer>
         {count > 0 && <Counter onClick={() => setCount(count - 1)}>-</Counter>}
-        <Value>{stock && stock === 0 ? 'Sin stock' : count}</Value>
-        {count < stock && <Counter onClick={() => setCount(count + 1)}>+</Counter>}
+        <Value>{stock && stock === 0 ? "Sin stock" : count}</Value>
+        {count < stock && (
+          <Counter onClick={() => setCount(count + 1)}>+</Counter>
+        )}
       </CounterContainer>
       <Button>Añadir al carrito</Button>
     </Container>

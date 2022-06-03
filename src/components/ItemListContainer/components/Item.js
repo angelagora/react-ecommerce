@@ -1,8 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import ItemCount from "./ItemCount";
 
-const Item = ({img, title, price, stock}) => {
+const Item = ({ img, title, price, id }) => {
   return (
     <Container>
       <Card>
@@ -12,7 +12,9 @@ const Item = ({img, title, price, stock}) => {
           <CardPrice>$ {price}</CardPrice>
         </CardContent>
         <CardFooter>
-          <ItemCount stock={stock} />
+          <Link to={`/product/${id}`}>
+            <Button>Añadir al carrito</Button>
+          </Link>
         </CardFooter>
       </Card>
     </Container>
@@ -32,7 +34,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 500px;
   background-color: #fff;
@@ -73,9 +75,22 @@ const CardPrice = styled.span`
 `;
 const CardFooter = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
   width: 100%;
-  height: 110px;
+  margin-top: 1rem;
+`;
+
+const Button = styled.button`
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #194184;
+  cursor: pointer;
+  &:hover {
+    color: #194184;
+    background-color: #b8e8e8;
+  }
+  width: 300px;
+  height: 50px;
+  border-radius: 5px;
 `;

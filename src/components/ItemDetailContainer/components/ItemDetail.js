@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import ItemCount from "../../ItemListContainer/components/ItemCount";
+import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ product }) => {
   const { title, img, price, stock } = product;
