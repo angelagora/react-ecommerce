@@ -1,9 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const ItemCount = (props) => {
-  const { stock, id } = props;
+const ItemCount = ({ stock, onAdd }) => {
   const [count, setCount] = React.useState(0);
   return (
     <Container>
@@ -14,7 +12,7 @@ const ItemCount = (props) => {
           <Counter onClick={() => setCount(count + 1)}>+</Counter>
         )}
       </CounterContainer>
-      <Button>Añadir al carrito</Button>
+      <Button onClick={onAdd}>Añadir al carrito</Button>
     </Container>
   );
 };
@@ -51,6 +49,7 @@ const Counter = styled.div`
   margin: 0.5rem 1rem;
   cursor: pointer;
   &:hover {
+    transition: all 0.2s ease-in-out;
     background-color: #194184;
     color: #fff;
   }
@@ -68,14 +67,14 @@ const Value = styled.div`
 const Button = styled.button`
   font-size: 1rem;
   font-weight: bold;
-  color: #194184;
+  color: #fff;
+  background-color: #194184;
   cursor: pointer;
   &:hover {
-    color: #fff;
-    background-color: #194184;
+    color: #194184;
+    background-color: #b8e8e8;
   }
   width: 100%;
-  height: 100%;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  height: 50px;
+  border-radius: 5px;
 `;

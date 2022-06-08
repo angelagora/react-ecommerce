@@ -1,10 +1,17 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import ItemCount from "./ItemCount";
+import { useNavigate } from "react-router-dom";
 
 const ItemDetail = ({ product }) => {
   const { title, img, price, stock } = product;
-  console.log(product);
+  const [showCount, setShowCount] = useState(false);
+  const navigate = useNavigate();
+
+  const onAdd = () => {
+    setShowCount(true);
+  };
+
   return (
     <Container>
       <Card>
@@ -22,7 +29,7 @@ const ItemDetail = ({ product }) => {
             </CardDescription>
           </DescriptionContainer>
           <CardFooter>
-            <ItemCount stock={stock} />
+            {showCount ? <Button onClick={()=> navigate('/cart')}>Terminar Compra</Button> : <ItemCount onAdd={onAdd} stock={stock} />}
           </CardFooter>
         </CardContent>
       </Card>
@@ -112,4 +119,19 @@ const CardFooter = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: 0.5rem;
+`;
+
+const Button = styled.button`
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #194184;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: #3AA742;
+  }
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
 `;
