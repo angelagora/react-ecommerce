@@ -1,15 +1,23 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ItemCount from "./ItemCount";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../../context/CartContext";
 
 const ItemDetail = ({ product }) => {
   const { title, img, price, stock } = product;
   const [showCount, setShowCount] = useState(false);
   const navigate = useNavigate();
+  const { addProduct } = useContext(CartContext);
 
   const onAdd = () => {
     setShowCount(true);
+  };
+
+  const handleOnClick = () => {
+    // navigate("/cart");
+    addProduct(product);
+    setShowCount(false);
   };
 
   return (
@@ -29,7 +37,11 @@ const ItemDetail = ({ product }) => {
             </CardDescription>
           </DescriptionContainer>
           <CardFooter>
-            {showCount ? <Button onClick={()=> navigate('/cart')}>Terminar Compra</Button> : <ItemCount onAdd={onAdd} stock={stock} />}
+            {showCount ? (
+              <Button onClick={handleOnClick}>Terminar Compra</Button>
+            ) : (
+              <ItemCount onAdd={onAdd} stock={stock} />
+            )}
           </CardFooter>
         </CardContent>
       </Card>
@@ -129,7 +141,7 @@ const Button = styled.button`
   cursor: pointer;
   &:hover {
     transition: all 0.2s ease-in-out;
-    background-color: #3AA742;
+    background-color: #3aa742;
   }
   width: 100%;
   height: 50px;

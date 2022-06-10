@@ -8,23 +8,26 @@ import GlobalAlert from "./components/GlobalAlert";
 import NotFound from "../../pages/NotFound";
 import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer";
 import Category from "../../pages/Category";
+import { CartContextProvider } from "../../context/CartContext";
 
 function App() {
   return (
     <Container className="App">
-      <BrowserRouter>
-        <NavBar />
-        <GlobalAlert message="Bienvenido, usuari@" />
-        <InnerContainer>
-          <Routes>
-            <Route path="/" element={<ItemListContainer />} />
-            <Route path="/product/:id" element={<ItemDetailContainer />} />
-            <Route path="/products/:category" element={<Category />} />
-            <Route path="*" element={<NotFound/>} />
-          </Routes>
-        </InnerContainer>
-        <Footer />
-      </BrowserRouter>
+      <CartContextProvider>
+        <BrowserRouter>
+          <NavBar />
+          <GlobalAlert message="Bienvenido, usuari@" />
+          <InnerContainer>
+            <Routes>
+              <Route path="/" element={<ItemListContainer />} />
+              <Route path="/product/:id" element={<ItemDetailContainer />} />
+              <Route path="/products/:category" element={<Category />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </InnerContainer>
+          <Footer />
+        </BrowserRouter>
+      </CartContextProvider>
     </Container>
   );
 }
