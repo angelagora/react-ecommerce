@@ -7,6 +7,7 @@ import { CartContext } from "../../../context/CartContext";
 const ItemDetail = ({ product }) => {
   const { title, img, price, stock } = product;
   const [showCount, setShowCount] = useState(false);
+  const [count, setCount] = React.useState(0);
   const navigate = useNavigate();
   const { addProduct } = useContext(CartContext);
 
@@ -15,9 +16,9 @@ const ItemDetail = ({ product }) => {
   };
 
   const handleOnClick = () => {
-    // navigate("/cart");
-    addProduct(product);
+    addProduct(product, count);
     setShowCount(false);
+    navigate("/cart");
   };
 
   return (
@@ -40,7 +41,7 @@ const ItemDetail = ({ product }) => {
             {showCount ? (
               <Button onClick={handleOnClick}>Terminar Compra</Button>
             ) : (
-              <ItemCount onAdd={onAdd} stock={stock} />
+              <ItemCount onAdd={onAdd} stock={stock} count={count} setCount={setCount} />
             )}
           </CardFooter>
         </CardContent>

@@ -3,45 +3,57 @@ import { useState, createContext } from "react";
 const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
   const [productInCart, setProductInCart] = useState([]);
 
-  const addProduct = (product) => {
-    let isInCart = productInCart.find(
+  const addProduct = (product, count) => {
+    const isInCart = productInCart.find(
       (cartProduct) => cartProduct.id === product.id
     );
     if (!isInCart) {
-      console.log("producto agregado:", product);
+      product.count = count;
+      console.log("producto agregado:", product); // improve this with toastify
       return setProductInCart((cartListProducts) => [
         ...cartListProducts,
         product,
       ]);
     } else {
-      console.log("El producto ya se encuentra en el carrito");
+      console.log("El producto ya se encuentra en el carrito"); // improve this with toastify
     }
   };
 
-  const removeProduct = (product) => {
-    let isInCart = productInCart.find(
-      (cartProduct) => cartProduct.id === product.id
-    );
-    if (isInCart) {
-      console.log("producto borrado:", product);
-      return setProductInCart((cartListProducts) =>
-        cartListProducts.filter((cartProduct) => cartProduct.id !== product.id)
-      );
-    } else {
-      console.log("El producto no se encuentra en el carrito");
-    }
+  const removeProduct = (itemId) => {
+    const isInCart = productInCart.find((item) => item.id === itemId);
+    const getId = productInCart.indexOf(isInCart);
+    productInCart.splice(getId, 1);
+    setProductInCart((cartListItems) => [...cartListItems]);
   };
 
   const clearCart = () => {
-    setCart([]);
+    console.log("carrito borrado"); // improve this with toastify
+    setProductInCart([]);
+  };
+
+  const cartItemsQuantity = () => {
+    return productInCart.reduce((acc, item) => acc + item.count, 0);
+  };
+
+  const cartTotalPrice = () => {
+    return productInCart.reduce(
+      (acc, item) => acc + item.price * item.count,
+      0
+    );
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addProduct, clearCart, removeProduct }}
+      value={{
+        productInCart,
+        addProduct,
+        clearCart,
+        removeProduct,
+        cartItemsQuantity,
+        cartTotalPrice
+      }}
     >
       {children}
     </CartContext.Provider>

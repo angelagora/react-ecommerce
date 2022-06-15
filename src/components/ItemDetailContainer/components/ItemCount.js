@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const ItemCount = ({ stock, onAdd }) => {
-  const [count, setCount] = React.useState(0);
+const ItemCount = ({ stock, onAdd, count, setCount }) => {
   return (
     <Container>
       <CounterContainer>

@@ -13,7 +13,7 @@ const Item = ({ img, title, price, id }) => {
         </CardContent>
         <CardFooter>
           <Link to={`/product/${id}`}>
-            <Button>Añadir al carrito</Button>
+            <Button>Ver detalles</Button>
           </Link>
         </CardFooter>
       </Card>

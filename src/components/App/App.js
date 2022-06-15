@@ -9,6 +9,7 @@ import NotFound from "../../pages/NotFound";
 import ItemDetailContainer from "../ItemDetailContainer/ItemDetailContainer";
 import Category from "../../pages/Category";
 import { CartContextProvider } from "../../context/CartContext";
+import CartContainer from "../CartContainer/CartContainer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <InnerContainer>
             <Routes>
               <Route path="/" element={<ItemListContainer />} />
+              <Route path="/cart" element={<CartContainer />} />
               <Route path="/product/:id" element={<ItemDetailContainer />} />
               <Route path="/products/:category" element={<Category />} />
               <Route path="*" element={<NotFound />} />
