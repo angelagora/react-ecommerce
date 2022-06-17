@@ -1,8 +1,9 @@
+import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "../components/ItemListContainer/components/ItemList";
 import Spinner from "../components/Spinner/Spinner";
-import { data } from "../utils/data";
+import db from "../utils/firebaseConfig";
 
 const Category = () => {
   const [products, setProducts] = useState([]);
@@ -12,17 +13,19 @@ const Category = () => {
   useEffect(() => {
     setProducts([]);
     setLoading(true);
-    getProducts().then((response) => {
+    getData().then((response) => {
       filterByCategory(response);
     });
   }, [category]); // eslint-disable-line
 
-  const getProducts = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(data);
-      }, 2000);
+  const getData = async () => {
+    const productSnapshot = await getDocs(collection(db, "productos"));
+    const productList = productSnapshot.docs.map((doc) => {
+      const product = doc.data();
+      product.id = doc.id;
+      return product;
     });
+    return productList;
   };
 
   const filterByCategory = (product) => {

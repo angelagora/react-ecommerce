@@ -7,7 +7,7 @@ import { CartContext } from "../../../context/CartContext";
 const ItemDetail = ({ product }) => {
   const { title, img, price, stock } = product;
   const [showCount, setShowCount] = useState(false);
-  const [count, setCount] = React.useState(0);
+  const [count, setCount] = React.useState(1);
   const navigate = useNavigate();
   const { addProduct } = useContext(CartContext);
 

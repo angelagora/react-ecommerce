@@ -5,7 +5,7 @@ const ItemCount = ({ stock, onAdd, count, setCount }) => {
   return (
     <Container>
       <CounterContainer>
-        {count > 0 && <Counter onClick={() => setCount(count - 1)}>-</Counter>}
+        {count > 1 && <Counter onClick={() => setCount(count - 1)}>-</Counter>}
         <Value>{stock && stock === 0 ? "Sin stock" : count}</Value>
         {count < stock && (
           <Counter onClick={() => setCount(count + 1)}>+</Counter>

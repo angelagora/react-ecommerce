@@ -1,22 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CartWidget from "./components/CartWidget";
 
 const NavBar = () => {
   const [showDropdown, setShowDropdown] = React.useState(false);
+  const navigate = useNavigate();
   return (
     <Container>
-      <Link to="/">
-        <Brand>Logo</Brand>
-      </Link>
+      <Brand onClick={() => navigate("/")}>Logo</Brand>
       <Menu>
-        <Link to="/">
-          <MenuItem>Home</MenuItem>
-        </Link>
-        <MenuItem
-          onMouseOver={() => setShowDropdown(true)}
-        >
+        <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
+        <MenuItem onMouseOver={() => setShowDropdown(true)}>
           Categories
         </MenuItem>
         <MenuItem>FAQs</MenuItem>
@@ -24,26 +19,26 @@ const NavBar = () => {
         <CartWidget />
       </Menu>
       {showDropdown && (
-        <DropdownMenu  onMouseLeave={() => setShowDropdown(false)}>
+        <DropdownMenu onMouseLeave={() => setShowDropdown(false)}>
           <DropdownItem>
-            <Link to="/products/desktop">
-              <DropdownLink>Desktop</DropdownLink>
-            </Link>
+            <DropdownLink onClick={() => navigate("/products/desktop")}>
+              Desktop
+            </DropdownLink>
           </DropdownItem>
           <DropdownItem>
-            <Link to="/products/laptop">
-              <DropdownLink>Laptop</DropdownLink>
-            </Link>
+            <DropdownLink onClick={() => navigate("/products/laptop")}>
+              Laptop
+            </DropdownLink>
           </DropdownItem>
           <DropdownItem>
-            <Link to="/products/componentes">
-              <DropdownLink>Componentes</DropdownLink>
-            </Link>
+            <DropdownLink onClick={() => navigate("/products/componentes")}>
+              Componentes
+            </DropdownLink>
           </DropdownItem>
           <DropdownItem>
-            <Link to="/products/telefonos">
-              <DropdownLink>Telefonos</DropdownLink>
-            </Link>
+            <DropdownLink onClick={() => navigate("/products/telefonos")}>
+              Telefonos
+            </DropdownLink>
           </DropdownItem>
         </DropdownMenu>
       )}
@@ -73,6 +68,7 @@ const Brand = styled.div`
   font-weight: bold;
   color: #194184;
   text-transform: uppercase;
+  cursor: pointer;
 `;
 
 const Menu = styled.div`
@@ -119,7 +115,7 @@ const DropdownItem = styled.div`
   }
 `;
 
-const DropdownLink = styled.a`
+const DropdownLink = styled.button`
   display: block;
   padding: 0.5rem 1rem;
   text-decoration: none;
