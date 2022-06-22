@@ -39,7 +39,7 @@ const ItemDetail = ({ product }) => {
           </DescriptionContainer>
           <CardFooter>
             {showCount ? (
-              <Button onClick={handleOnClick}>Terminar Compra</Button>
+              <Button onClick={handleOnClick}>Ir al carrito</Button>
             ) : (
               <ItemCount onAdd={onAdd} stock={stock} count={count} setCount={setCount} />
             )}
