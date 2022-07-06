@@ -2,14 +2,14 @@
 
 ## FE Stack
 
-React
-Styled Components
-Toastify
-Material-UI
+- React
+- Styled Components
+- Toastify
+- Material-UI
 
 ## BE Provider
 
-Firebase
+- Firebase
 
 # Usage Example
 
