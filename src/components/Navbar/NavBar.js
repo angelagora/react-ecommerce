@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CartWidget from "./components/CartWidget";
 
@@ -16,7 +16,7 @@ const NavBar = () => {
         </MenuItem>
         <MenuItem>FAQs</MenuItem>
         <MenuItem>Contact</MenuItem>
-        <CartWidget />
+        <CartWidget onClick={() => navigate("/cart")}/>
       </Menu>
       {showDropdown && (
         <DropdownMenu onMouseLeave={() => setShowDropdown(false)}>
@@ -97,6 +97,7 @@ const DropdownMenu = styled.div`
   top: 100%;
   right: 305px;
   background-color: #fff;
+  cursor: pointer;
   &:before {
     content: "";
     position: absolute;
@@ -110,6 +111,7 @@ const DropdownMenu = styled.div`
 
 const DropdownItem = styled.div`
   padding: 0.5rem;
+  cursor: pointer;
   :hover {
     background-color: #b8e8e8;
   }
@@ -117,6 +119,7 @@ const DropdownItem = styled.div`
 
 const DropdownLink = styled.button`
   display: block;
+  cursor: pointer;
   padding: 0.5rem 1rem;
   text-decoration: none;
   color: #000;

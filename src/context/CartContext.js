@@ -1,4 +1,5 @@
 import { useState, createContext } from "react";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
@@ -11,13 +12,17 @@ const CartContextProvider = ({ children }) => {
     );
     if (!isInCart) {
       product.count = count;
-      console.log("producto agregado:", product); // improve this with toastify
+      toast.success("Producto agregado al carrito", {
+        position: toast.POSITION.TOP_LEFT,
+      });
       return setProductInCart((cartListProducts) => [
         ...cartListProducts,
         product,
       ]);
     } else {
-      console.log("El producto ya se encuentra en el carrito"); // improve this with toastify
+      toast.error("El producto ya se encuentra en el carrito", {
+        position: toast.POSITION.TOP_LEFT,
+      });
     }
   };
 
@@ -29,7 +34,9 @@ const CartContextProvider = ({ children }) => {
   };
 
   const clearCart = () => {
-    console.log("carrito borrado"); // improve this with toastify
+    toast.info("Carrito borrado", {
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
     setProductInCart([]);
   };
 
@@ -52,7 +59,7 @@ const CartContextProvider = ({ children }) => {
         clearCart,
         removeProduct,
         cartItemsQuantity,
-        cartTotalPrice
+        cartTotalPrice,
       }}
     >
       {children}

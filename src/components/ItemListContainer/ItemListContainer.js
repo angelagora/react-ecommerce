@@ -13,7 +13,6 @@ const ItemListContainer = () => {
   useEffect(() => {
     setProducts([]);
     getData().then((products) => {
-      console.log("products", products);
       setProducts(products);
       setLoading(false);
     });

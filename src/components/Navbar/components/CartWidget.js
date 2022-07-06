@@ -2,11 +2,11 @@ import styled from "styled-components";
 import React, { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 
-const CartWidget = () => {
+const CartWidget = ({ onClick }) => {
   const { productInCart, cartItemsQuantity } = useContext(CartContext);
   return (
     <>
-      <Icon>
+      <Icon onClick={onClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -32,6 +32,7 @@ const Icon = styled.div`
   font-weight: bold;
   color: #194184;
   text-transform: uppercase;
+  cursor: pointer;
 `;
 
 const Quantity = styled.div`
