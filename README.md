@@ -1,6 +1,6 @@
 # Proyect React-Ecommerce | Coderhouse
 
-## FE Stack
+## FE Tools
 
 - React
 - Styled Components
